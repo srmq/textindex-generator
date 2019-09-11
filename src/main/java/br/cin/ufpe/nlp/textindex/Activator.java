@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceEvent;
 import org.osgi.framework.ServiceListener;
@@ -47,6 +48,13 @@ public class Activator  implements BundleActivator {
 						throw new IllegalStateException("IOException when trying doStuff following serviceChanged", e);
 					}
 					firstTime = false;
+					logger.info("ALL DONE, now trying to shutdown gracefully");
+					try {
+						context.getBundle(0).stop();
+					} catch (BundleException e) {
+						e.printStackTrace();
+						throw new IllegalStateException("Error while trying to shutdown OSGI after all done", e);
+					}
 				}
 			}
 			
@@ -98,6 +106,13 @@ public class Activator  implements BundleActivator {
 			if (isReady()) {
 				doStuff();
 				firstTime = false;
+				logger.info("ALL DONE, now trying to shutdown gracefully");
+				try {
+					context.getBundle(0).stop();
+				} catch (BundleException e) {
+					e.printStackTrace();
+					throw new IllegalStateException("Error while trying to shutdown OSGI after all done", e);
+				}
 			}
 		}
 

@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -102,19 +103,20 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
+						<_noee>true</_noee>
 						<Import-Package>org.osgi.framework,br.cin.ufpe.nlp.api.transform,br.cin.ufpe.nlp.api.bagofwords,br.cin.ufpe.nlp.api.tokenization,br.cin.ufpe.nlp.util,*;resolution:=optional</Import-Package>
 						<Private-Package>br.cin.ufpe.nlp.textindex</Private-Package>
-						<Export-Package></Export-Package> 
+						<Export-Package></Export-Package>
 						<Bundle-Activator>br.cin.ufpe.nlp.textindex.Activator</Bundle-Activator>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
-						
+
 						<Include-Resource>
 							{maven-resources}, {maven-dependencies}
 						</Include-Resource>
-						 
-						<Bundle-ClassPath>.,{maven-dependencies}</Bundle-ClassPath> 
+
+						<Bundle-ClassPath>.,{maven-dependencies}</Bundle-ClassPath>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -129,5 +131,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>
